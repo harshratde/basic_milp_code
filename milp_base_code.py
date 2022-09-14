@@ -71,7 +71,8 @@ print('\n---------------------------------------------')
 print('OPTIMIZATION SOLVER START')
 
 # opt = pyo.SolverFactory('baron')
-opt = pe.SolverFactory('glpk')
+# opt = pe.SolverFactory('glpk')
+opt = pe.SolverFactory('gurobi')
 
 opt.solve(m) 
 
