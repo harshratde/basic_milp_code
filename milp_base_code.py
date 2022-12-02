@@ -36,7 +36,7 @@ key_cols_df.set_index(key_cols_list, inplace=True)
 tm_key_set = data.index.unique()
 
 
-cols_list_df = pd.DataFrame({'':cols_list})
+# cols_list_df = pd.DataFrame({'':cols_list})
 
 # =============================================================================
 # 
@@ -75,6 +75,31 @@ def obj_rule(m):
 
 m.OBJ = pe.Objective(rule=obj_rule, sense=pe.minimize)
 
+
+test_list = [1, 2 , 3 ]
+
+test_list_2 = []
+for i in test_list :
+    test_list_2.append(i*2)
+    
+sum(test_list_2 )
+#[2, 4, 6]
+
+
+test_list_2 = list(map(lambda x:x*2, test_list))
+
+
+
+
+def impact_push_show_l(m,j):
+    return sum(map(lambda x:Y[x],  tm_key_set))==1
+m.impact_push_show_cl = pe.Constraint(m.cols, rule = impact_push_show_l)
+
+
+??pe.Constraint
+
+
+m.pprint()
 
 def impact_push_show_l(m,j):
     return sum([m.Y[e] for e in tm_key_set if j == e[master_key.index('cols')]])==1    
